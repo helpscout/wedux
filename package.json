@@ -1,0 +1,73 @@
+{
+  "name": "wedux",
+  "version": "0.0.1",
+  "description": "A tool kit for React UI development and design",
+  "main": "dist/index.js",
+  "private": false,
+  "scripts": {
+    "check:npm": "node scripts/check-npm.js",
+    "prestart": "npm run check:npm",
+    "build:js": "zero build",
+    "build:ts": "tsc",
+    "build": "npm run clean && npm run build:ts",
+    "bundle": "zero build --bundle",
+    "lint": "zero lint",
+    "dev": "zero test --watchAll",
+    "git:push": "git push --follow-tags",
+    "test": "zero test --coverage",
+    "test:ci": "zero test",
+    "test:update": "npm test -- --updateSnapshot --coverage",
+    "validate": "zero validate",
+    "setup": "npm install && npm run validate -s",
+    "precommit": "zero precommit",
+    "clean": "rm -rf dist lib",
+    "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
+    "release": "npm version",
+    "version": "npm run build",
+    "postversion": "npm publish && npm run git:push",
+    "start": "npm run storybook",
+    "storybook": "start-storybook -p 6007",
+    "build-storybook": "build-storybook",
+    "prettier": "prettier \"src/**/*.{js,ts,tsx}\" --write",
+    "pretty": "npm run prettier"
+  },
+  "author": "Jon Quach <hello@jonquach.com> (https://jonquach.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helpscout/wedux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/helpscout/wedux/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "management",
+    "react",
+    "redux",
+    "state",
+    "tiny",
+    "wedux"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "peerDependencies": {
+    "react": "^16 || ^15"
+  },
+  "devDependencies": {
+    "@helpscout/helix": "0.1.0",
+    "@helpscout/zero": "0.0.9",
+    "check-dependencies": "1.1.0",
+    "coveralls": "3.0.2",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "np": "2.20.1",
+    "nyc": "13.0.0",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-scripts": "2.1.1",
+    "react-test-renderer": "^16",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.1"
+  }
+}

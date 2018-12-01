@@ -1,4 +1,6 @@
 import createStore from '../createStore'
+import {initialState} from '../__fixtures__/state'
+import actionTypes from '../__fixtures__/actionTypes'
 
 describe('Basics', () => {
   test('Creates basic store', () => {
@@ -68,31 +70,39 @@ describe('Subscribe/Unsubscrive', () => {
 })
 
 describe('Reducer', () => {
+  const reducer = (state = initialState, action) => {
+    switch (action.type) {
+      case actionTypes.MAKE_BURGER:
+        return {
+          ...state,
+          burgerCount: state.burgerCount + 1,
+        }
+      default:
+        return state
+    }
+  }
+
   test('Can add reducer to store', () => {
-    const initialState = {
-      restaurantName: `Bob's Burgers`,
-      owner: 'Bob Belcher',
-      burgerCount: 0,
-    }
+    const store = createStore(reducer)
 
-    const reducer = (state = initialState, action) => {
-      switch (action.type) {
-        case 'MAKE_BURGER':
-          return {
-            ...state,
-            burgerCount: state.burgerCount + 1,
-          }
-        default:
-          return state
-      }
-    }
+    expect(store.getState().burgerCount).toBe(0)
+  })
 
+  test('Can update state with reducer + action', () => {
     const store = createStore(reducer)
 
     expect(store.getState().burgerCount).toBe(0)
 
-    store.dispatch({type: 'MAKE_BURGER'})
+    store.dispatch({type: actionTypes.MAKE_BURGER})
 
     expect(store.getState().burgerCount).toBe(1)
+  })
+
+  test('Can default state if no action.type is detected', () => {
+    const store = createStore(reducer)
+
+    store.dispatch({type: undefined})
+
+    expect(store.getState().burgerCount).toBe(0)
   })
 })

@@ -66,3 +66,33 @@ describe('Subscribe/Unsubscrive', () => {
     expect(spy).toHaveBeenCalledTimes(1)
   })
 })
+
+describe('Reducer', () => {
+  test('Can add reducer to store', () => {
+    const initialState = {
+      restaurantName: `Bob's Burgers`,
+      owner: 'Bob Belcher',
+      burgerCount: 0,
+    }
+
+    const reducer = (state = initialState, action) => {
+      switch (action.type) {
+        case 'MAKE_BURGER':
+          return {
+            ...state,
+            burgerCount: state.burgerCount + 1,
+          }
+        default:
+          return state
+      }
+    }
+
+    const store = createStore(reducer)
+
+    expect(store.getState().burgerCount).toBe(0)
+
+    store.dispatch({type: 'MAKE_BURGER'})
+
+    expect(store.getState().burgerCount).toBe(1)
+  })
+})

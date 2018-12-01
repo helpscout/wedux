@@ -1,4 +1,4 @@
 export {default as connect} from './connect'
-import wedux from './wedux'
+import createStore from './createStore'
 
-export default wedux
+export default createStore

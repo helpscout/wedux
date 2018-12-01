@@ -27,7 +27,7 @@ export default function createStore(state) {
     listeners = out
   }
 
-  function setState(update, overwrite, action) {
+  function setState(update?, overwrite?, action?) {
     state = overwrite ? update : assign(assign({}, state), update)
     let currentListeners = listeners
     for (let i = 0; i < currentListeners.length; i++)

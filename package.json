@@ -1,7 +1,7 @@
 {
-  "name": "wedux",
+  "name": "@helpscout/wedux",
   "version": "0.0.1",
-  "description": "A tool kit for React UI development and design",
+  "description": "A tiny Redux",
   "main": "dist/index.js",
   "private": false,
   "scripts": {

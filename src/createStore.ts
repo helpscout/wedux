@@ -1,6 +1,9 @@
 import createUnistore from './createUnistore'
 
-export default function createStore(reducer) {
+export default function createStore(reducer, enhancer?) {
+  if (enhancer) {
+    return enhancer(createStore)(reducer)
+  }
   const isReducer = typeof reducer === 'function'
   const initialState = isReducer ? reducer(undefined, {}) : reducer
 
@@ -12,9 +15,7 @@ export default function createStore(reducer) {
   }
 
   return {
-    getState: store.getState,
-    subscribe: store.subscribe,
-    unsubscribe: store.unsubscribe,
+    ...store,
 
     setState,
 

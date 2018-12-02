@@ -1,3 +1,15 @@
+export function compose(...funcs) {
+  if (funcs.length === 0) {
+    return arg => arg
+  }
+
+  if (funcs.length === 1) {
+    return funcs[0]
+  }
+
+  return funcs.reduce((a, b) => (...args) => a(b(...args)))
+}
+
 // Bind an object/factory of actions to the store and wrap them.
 export function mapActions(actions, store) {
   if (typeof actions === 'function') actions = actions(store)

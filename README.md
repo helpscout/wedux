@@ -1,5 +1,7 @@
 # Wedux
 
+[![Build Status](https://travis-ci.org/helpscout/wedux.svg?branch=master)](https://travis-ci.org/helpscout/wedux)
+
 > Like Redux, but tiny :)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->

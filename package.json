@@ -57,6 +57,7 @@
   "devDependencies": {
     "@helpscout/helix": "0.1.0",
     "@helpscout/zero": "0.0.9",
+    "@types/enzyme": "3.1.15",
     "check-dependencies": "1.1.0",
     "coveralls": "3.0.2",
     "enzyme": "^3.7.0",

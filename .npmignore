@@ -11,3 +11,4 @@ storybook-static
 testHelpers.ts
 __tests__
 __mocks__
+__fixtures__

@@ -7,9 +7,9 @@
   "scripts": {
     "check:npm": "node scripts/check-npm.js",
     "prestart": "npm run check:npm",
-    "build:js": "zero build",
     "build:ts": "tsc",
-    "build": "npm run clean && npm run build:ts",
+    "build": "npm run clean && npm run build:ts && npm run build:postclean",
+    "build:postclean": "rm -rf dist/__tests__ && rm -rf dist/__fixtures__",
     "bundle": "zero build --bundle",
     "lint": "zero lint",
     "dev": "zero test --watchAll",
@@ -58,6 +58,10 @@
     "@helpscout/helix": "0.1.0",
     "@helpscout/zero": "0.0.9",
     "@types/enzyme": "3.1.15",
+    "@types/jest": "23.3.10",
+    "@types/react": "16.7.11",
+    "@types/redux": "3.6.0",
+    "babel-jest": "23.6.0",
     "check-dependencies": "1.1.0",
     "coveralls": "3.0.2",
     "enzyme": "^3.7.0",
@@ -71,10 +75,5 @@
     "redux-thunk": "2.3.0",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.1"
-  },
-  "dependencies": {
-    "@types/jest": "23.3.10",
-    "@types/react": "16.7.11",
-    "babel-jest": "23.6.0"
   }
 }

@@ -6,6 +6,7 @@ dist
 .DS_Store
 .eslintcache
 
+build
 storybook-static
 
 # these cause more harm than good

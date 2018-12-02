@@ -1,6 +1,7 @@
 # Wedux
 
 [![Build Status](https://travis-ci.org/helpscout/wedux.svg?branch=master)](https://travis-ci.org/helpscout/wedux)
+[![npm version](https://badge.fury.io/js/%40helpscout%2Fwedux.svg)](https://badge.fury.io/js/%40helpscout%2Fwedux)
 
 > Like Redux, but tiny :)
 

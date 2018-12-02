@@ -23,7 +23,7 @@
     "precommit": "zero precommit",
     "clean": "rm -rf dist lib",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
-    "release": "npm version",
+    "release": "npm run test && npm version",
     "version": "npm run build",
     "postversion": "npm publish && npm run git:push",
     "start": "npm run storybook",

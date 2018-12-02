@@ -10,6 +10,7 @@
 
 - [✨ Features](#-features)
 - [🔧 Installation](#-installation)
+- [❤️ Thanks](#-thanks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -25,3 +26,7 @@ Add `wedux` to your project via `npm install`:
 ```
 npm install --save @helpscout/wedux
 ```
+
+## ❤️ Thanks
+
+Thanks to [developit](https://github.com/developit) for creating (Unistore)(https://github.com/developit/unistore), which this library is based on. And of course, the lovely folks at [Redux](https://github.com/reduxjs/redux).

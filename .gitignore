@@ -8,6 +8,7 @@ dist
 
 build
 storybook-static
+.docz
 
 # these cause more harm than good
 # when working with contributors

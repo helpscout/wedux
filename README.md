@@ -5,6 +5,10 @@
 
 > Like Redux + React-Redux, but tiny :)
 
+Wedux is a state management library for [React](https://reactjs.org/) applications.
+
+It's inspired by the patterns of [Redux](https://redux.js.org/) and the implementation [Unistore](https://github.com/developit/unistore). With a tiny library size of around 1.5kb gzipped, Wedux provides you the power of Redux (for most use-cases) with a minimal impact on bundle size - perfect for use in libraries!
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 

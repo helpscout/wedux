@@ -15,7 +15,7 @@ export function compose(...funcs) {
 // Bind an object/factory of actions to the store and wrap them.
 export function mapActions(actions, store) {
   if (typeof actions === 'function') actions = actions(store)
-  let mapped = {}
+  const mapped = {}
   for (let i in actions) {
     mapped[i] = store.action(actions[i])
   }
@@ -26,7 +26,7 @@ export function mapActions(actions, store) {
 export function select(properties) {
   if (typeof properties === 'string') properties = properties.split(/\s*,\s*/)
   return state => {
-    let selected = {}
+    const selected = {}
     for (let i = 0; i < properties.length; i++) {
       selected[properties[i]] = state[properties[i]]
     }
@@ -38,9 +38,4 @@ export function select(properties) {
 export function assign(obj, props) {
   for (let i in props) obj[i] = props[i]
   return obj
-}
-
-export function createUniqueIDFactory(prefix?: string): string {
-  let index = 1
-  return `${prefix}${index++}`
 }

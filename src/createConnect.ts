@@ -1,14 +1,17 @@
 import * as React from 'react'
 import {assign, mapActions, select} from './utils'
 
-type ComponentType = 'Component' | 'PureComponent'
-
 export const CONTEXT_TYPES = {
   __WEDUX_STORE__: () => {},
 }
 
-export function createConnect(componentType: ComponentType = 'Component') {
-  return function connect(mapStateToProps: any = null, actions: any = null) {
+export function createConnect(
+  componentType: 'Component' | 'PureComponent' = 'Component',
+) {
+  return function connect(
+    mapStateToProps: any = null,
+    actions: any = null,
+  ): any {
     if (typeof mapStateToProps !== 'function') {
       mapStateToProps = select(mapStateToProps || [])
     }

@@ -32,6 +32,12 @@
     "prettier": "prettier \"src/**/*.{js,ts,tsx}\" --write",
     "pretty": "npm run prettier"
   },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "src",
+    "dist"
+  ],
   "author": "Jon Quach <hello@jonquach.com> (https://jonquach.com)",
   "repository": {
     "type": "git",

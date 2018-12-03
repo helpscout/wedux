@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/helpscout/wedux.svg?branch=master)](https://travis-ci.org/helpscout/wedux)
 [![npm version](https://badge.fury.io/js/%40helpscout%2Fwedux.svg)](https://badge.fury.io/js/%40helpscout%2Fwedux)
 
-> Like Redux, but tiny :)
+> Like Redux + React-Redux, but tiny :)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->

@@ -8,7 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["es5", "dom"],
-    "module": "ES2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noImplicitReturns": true,

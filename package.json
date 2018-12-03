@@ -35,7 +35,6 @@
   "files": [
     "README.md",
     "LICENSE",
-    "src",
     "dist"
   ],
   "author": "Jon Quach <hello@jonquach.com> (https://jonquach.com)",

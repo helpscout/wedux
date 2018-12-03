@@ -8,3 +8,5 @@ export class Provider extends React.Component<any> {
     return React.Children.only(this.props.children)
   }
 }
+
+export default Provider

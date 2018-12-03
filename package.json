@@ -21,7 +21,7 @@
     "validate": "zero validate",
     "setup": "npm install && npm run validate -s",
     "precommit": "zero precommit",
-    "clean": "rm -rf dist lib",
+    "clean": "rm -rf dist lib build",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
     "release": "npm run test && npm version",
     "version": "npm run build",

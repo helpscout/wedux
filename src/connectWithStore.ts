@@ -6,12 +6,10 @@ export default function connectWithStore(
   mergedProps: Object = {},
   options: any = {},
 ) {
-  const connectOptions = {...options, withStore: true}
-
   return connect(
     mapStateToProps,
     actions,
     mergedProps,
-    connectOptions,
+    {...options, withStore: true},
   )
 }

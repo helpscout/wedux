@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {assign, mapActions, select, defaultStoreKey} from './utils'
+import {mapActions, select, defaultStoreKey} from './utils'
 
 export type Options = {
   pure: boolean
@@ -26,11 +26,7 @@ export function createConnect(
     mapStateToProps = select(mapStateToProps || [])
   }
 
-  let OuterBaseComponent = React.Component
-
-  if (pure) {
-    OuterBaseComponent = React.PureComponent
-  }
+  const OuterBaseComponent = pure ? React.PureComponent : React.Component
 
   return Child => {
     const wrappedComponentName = Child.displayName || Child.name || 'Component'
@@ -63,16 +59,18 @@ export function createConnect(
         store && store.unsubscribe(update)
       }
       this.render = () => {
-        const connectedMergedProps = assign(
-          assign(assign({}, boundActions), this.props),
-          state,
-        )
+        const connectedMergedProps = {
+          ...{...boundActions},
+          ...this.props,
+          ...state,
+          ...mergedProps,
+        }
         const {store, ...propsWithoutStore} = connectedMergedProps
         const preparedProps = withStore
           ? connectedMergedProps
           : propsWithoutStore
 
-        return React.createElement(Child, assign(preparedProps, mergedProps))
+        return React.createElement(Child, {...preparedProps, ...mergedProps})
       }
     }
     Wrapper.displayName = `Connect(${wrappedComponentName})`

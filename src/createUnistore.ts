@@ -1,5 +1,3 @@
-import {assign} from './utils'
-
 /**
  * Creates a new store, which is a tiny evented state container.
  * @name createStore
@@ -28,7 +26,7 @@ export default function createStore(state) {
   }
 
   function setState(update?, overwrite?, action?) {
-    state = overwrite ? update : assign(assign({}, state), update)
+    state = overwrite ? update : {...state, ...update}
     let currentListeners = listeners
     for (let i = 0; i < currentListeners.length; i++)
       // @ts-ignore

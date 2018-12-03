@@ -1,3 +1,5 @@
+export const storeNamespace = '__WEDUX_STORE__'
+
 export function compose(...funcs) {
   if (funcs.length === 0) {
     return arg => arg
@@ -36,4 +38,9 @@ export function select(properties) {
 export function assign(obj, props) {
   for (let i in props) obj[i] = props[i]
   return obj
+}
+
+export function createUniqueIDFactory(prefix?: string): string {
+  let index = 1
+  return `${prefix}${index++}`
 }

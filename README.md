@@ -8,18 +8,19 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [✨ Features](#-features)
-- [🔧 Installation](#-installation)
-- [❤️ Thanks](#-thanks)
+- [Features](#-features)
+- [Installation](#-installation)
+- [Thanks](#-thanks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## ✨ Features
+## Features
 
 - **Zero dependencies**!
 - Super tiny, at ~1.5KB gzipped
+- Perfect for library use
 
-## 🔧 Installation
+## Installation
 
 Add `wedux` to your project via `npm install`:
 
@@ -27,6 +28,6 @@ Add `wedux` to your project via `npm install`:
 npm install --save @helpscout/wedux
 ```
 
-## ❤️ Thanks
+## Thanks
 
 Thanks to [developit](https://github.com/developit) for creating [Unistore](https://github.com/developit/unistore), which this library is based on. And of course, the lovely folks at [Redux](https://github.com/reduxjs/redux).

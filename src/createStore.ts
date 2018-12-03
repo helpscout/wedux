@@ -34,7 +34,7 @@ export default function createStore(reducer, enhancer?) {
         const args = [store.getState()]
         for (let i = 0; i < arguments.length; i++) args.push(arguments[i])
         const ret = action.apply(this, args)
-        if (ret !== null) {
+        if (ret) {
           return ret.then ? apply(ret.then()) : apply(ret)
         }
       }

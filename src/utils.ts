@@ -1,4 +1,4 @@
-export const storeNamespace = '__WEDUX_STORE__'
+export const defaultStoreKey = '__WEDUX_STORE__'
 
 export function compose(...funcs) {
   if (funcs.length === 0) {

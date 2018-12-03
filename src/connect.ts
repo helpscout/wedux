@@ -1,3 +1,88 @@
-import createConnect from './createConnect'
+import * as React from 'react'
+import {assign, mapActions, select, defaultStoreKey} from './utils'
 
-export default createConnect('Component')
+export type Options = {
+  pure: boolean
+  withStore: boolean
+  store?: any
+}
+
+const defaultOptions = {
+  pure: true,
+  withStore: false,
+}
+
+export function createConnect(
+  mapStateToProps: any = null,
+  actions: any = null,
+  mergedProps: Object = {},
+  options: any = defaultOptions,
+): any {
+  const {pure, withStore, store: providedStore} = {
+    ...defaultOptions,
+    ...options,
+  } as Options
+  if (typeof mapStateToProps !== 'function') {
+    mapStateToProps = select(mapStateToProps || [])
+  }
+
+  let OuterBaseComponent = React.Component
+
+  if (pure) {
+    OuterBaseComponent = React.PureComponent
+  }
+
+  return Child => {
+    const wrappedComponentName = Child.displayName || Child.name || 'Component'
+
+    function Wrapper(props, context) {
+      OuterBaseComponent.call(this, props, context)
+      const store = providedStore || context[defaultStoreKey]
+      const boundActions = actions ? mapActions(actions, store) : {store}
+      let state = mapStateToProps(store ? store.getState() : {}, props)
+      const update = () => {
+        const mapped = mapStateToProps(
+          store ? store.getState() : {},
+          this.props,
+        )
+        for (let i in mapped)
+          if (mapped[i] !== state[i]) {
+            state = mapped
+            return this.forceUpdate()
+          }
+        for (let i in state)
+          if (!(i in mapped)) {
+            state = mapped
+            return this.forceUpdate()
+          }
+      }
+      this.componentDidMount = () => {
+        store && store.subscribe(update)
+      }
+      this.componentWillUnmount = () => {
+        store && store.unsubscribe(update)
+      }
+      this.render = () => {
+        const connectedMergedProps = assign(
+          assign(assign({}, boundActions), this.props),
+          state,
+        )
+        const {store, ...propsWithoutStore} = connectedMergedProps
+        const preparedProps = withStore
+          ? connectedMergedProps
+          : propsWithoutStore
+
+        return React.createElement(Child, assign(preparedProps, mergedProps))
+      }
+    }
+    Wrapper.displayName = `Connect(${wrappedComponentName})`
+    Wrapper.contextTypes = {
+      [defaultStoreKey]: () => {},
+    }
+    return ((Wrapper.prototype = Object.create(
+      OuterBaseComponent.prototype,
+    )).constructor = Wrapper)
+  }
+}
+
+export default createConnect

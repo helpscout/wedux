@@ -17,7 +17,7 @@
 ## ✨ Features
 
 - **Zero dependencies**!
-- Super tiny, at ~1.4KB gzipped
+- Super tiny, at ~1.5KB gzipped
 
 ## 🔧 Installation
 

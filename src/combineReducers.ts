@@ -1,3 +1,5 @@
+import {isFn} from './utils'
+
 export default function combineReducers(reducers) {
   return (state = {}, action = {}) => {
     const reducerKeys = Object.keys(reducers)
@@ -6,7 +8,7 @@ export default function combineReducers(reducers) {
     for (let i = 0; i < reducerKeys.length; i++) {
       const key = reducerKeys[i]
 
-      if (typeof reducers[key] === 'function') {
+      if (isFn(reducers[key])) {
         finalReducers[key] = reducers[key]
       }
     }

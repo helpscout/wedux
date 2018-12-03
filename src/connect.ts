@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {mapActions, select, defaultStoreKey} from './utils'
+import {mapActions, select, defaultStoreKey, isFn} from './utils'
 
 export type Options = {
   pure: boolean
@@ -22,7 +22,7 @@ export function createConnect(
     ...defaultOptions,
     ...options,
   } as Options
-  if (typeof mapStateToProps !== 'function') {
+  if (!isFn(mapStateToProps)) {
     mapStateToProps = select(mapStateToProps || [])
   }
 
@@ -33,9 +33,12 @@ export function createConnect(
 
     function Wrapper(props, context) {
       OuterBaseComponent.call(this, props, context)
+
       const store = providedStore || context[defaultStoreKey]
       const boundActions = actions ? mapActions(actions, store) : {store}
+
       let state = mapStateToProps(store ? store.getState() : {}, props)
+
       const update = () => {
         const mapped = mapStateToProps(
           store ? store.getState() : {},
@@ -52,6 +55,7 @@ export function createConnect(
             return this.forceUpdate()
           }
       }
+
       this.componentDidMount = () => {
         store && store.subscribe(update)
       }
@@ -73,10 +77,12 @@ export function createConnect(
         return React.createElement(Child, {...preparedProps, ...mergedProps})
       }
     }
+
     Wrapper.displayName = `Connect(${wrappedComponentName})`
     Wrapper.contextTypes = {
       [defaultStoreKey]: () => {},
     }
+
     return ((Wrapper.prototype = Object.create(
       OuterBaseComponent.prototype,
     )).constructor = Wrapper)

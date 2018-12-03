@@ -1,10 +1,11 @@
 import createUnistore from './createUnistore'
+import {isFn} from './utils'
 
 export default function createStore(reducer, enhancer?) {
   if (enhancer) {
     return enhancer(createStore)(reducer)
   }
-  const isReducer = typeof reducer === 'function'
+  const isReducer = isFn(reducer)
   const initialState = isReducer ? reducer(undefined, {}) : reducer
 
   const store = createUnistore(initialState)

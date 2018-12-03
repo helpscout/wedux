@@ -1,5 +1,12 @@
 export const defaultStoreKey = '__WEDUX_STORE__'
 
+export function isFn(obj) {
+  return typeof obj === 'function'
+}
+export function isString(obj) {
+  return typeof obj === 'string'
+}
+
 export function compose(...funcs) {
   if (funcs.length === 0) {
     return arg => arg
@@ -14,7 +21,7 @@ export function compose(...funcs) {
 
 // Bind an object/factory of actions to the store and wrap them.
 export function mapActions(actions, store) {
-  if (typeof actions === 'function') actions = actions(store)
+  if (isFn(actions)) actions = actions(store)
   const mapped = {}
   for (let i in actions) {
     mapped[i] = store.action(actions[i])
@@ -24,7 +31,7 @@ export function mapActions(actions, store) {
 
 // select('foo,bar') creates a function of the form: ({ foo, bar }) => ({ foo, bar })
 export function select(properties) {
-  if (typeof properties === 'string') properties = properties.split(/\s*,\s*/)
+  if (isString(properties)) properties = properties.split(/\s*,\s*/)
   return state => {
     const selected = {}
     for (let i = 0; i < properties.length; i++) {

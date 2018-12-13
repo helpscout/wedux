@@ -1,19 +1,27 @@
 import * as React from 'react'
 import {defaultStoreKey} from './utils'
 
-const defaultOptions = {
-  storeKey: defaultStoreKey,
+type ProviderOptions = {
+  storeKey?: string
+  store?: any
 }
 
-export default function createProvider(options = defaultOptions) {
-  const {storeKey} = {...defaultOptions, ...options}
+const defaultOptions = {
+  storeKey: defaultStoreKey,
+  store: undefined,
+}
+
+export default function createProvider(
+  options: ProviderOptions = defaultOptions,
+) {
+  const {storeKey, store} = {...defaultOptions, ...options}
 
   return class Provider extends React.Component<any> {
     static childContextTypes = {
       [storeKey]: () => {},
     }
     getChildContext() {
-      return {[storeKey]: this.props.store}
+      return {[storeKey]: this.props.store || store}
     }
     render() {
       return React.Children.only(this.props.children)

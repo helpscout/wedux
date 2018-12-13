@@ -5,6 +5,7 @@ export type Options = {
   pure: boolean
   withStore: boolean
   store?: any
+  storeKey?: string
 }
 
 const defaultOptions = {
@@ -18,13 +19,15 @@ export function createConnect(
   mergedProps: Object = {},
   options: any = defaultOptions,
 ): any {
-  const {pure, withStore, store: providedStore} = {
+  const {pure, withStore, store: providedStore, storeKey} = {
     ...defaultOptions,
     ...options,
   } as Options
   if (!isFn(mapStateToProps)) {
     mapStateToProps = select(mapStateToProps || [])
   }
+
+  const internalStoreKey = storeKey || defaultStoreKey
 
   const OuterBaseComponent = pure ? React.PureComponent : React.Component
 
@@ -34,7 +37,7 @@ export function createConnect(
     function Wrapper(props, context) {
       OuterBaseComponent.call(this, props, context)
 
-      const store = providedStore || context[defaultStoreKey]
+      const store = providedStore || context[internalStoreKey]
       const boundActions = actions ? mapActions(actions, store) : {store}
 
       let state = mapStateToProps(store ? store.getState() : {}, props)

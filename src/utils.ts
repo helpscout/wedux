@@ -1,5 +1,14 @@
 export const defaultStoreKey = '__WEDUX_STORE__'
 
+export function createUUIDFactory() {
+  let index = 0
+  return (namespace: string = defaultStoreKey): string => {
+    return `${namespace}${index++}__`
+  }
+}
+
+export const uuid = createUUIDFactory()
+
 export function isFn(obj) {
   return typeof obj === 'function'
 }

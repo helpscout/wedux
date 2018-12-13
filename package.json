@@ -1,6 +1,6 @@
 {
   "name": "@helpscout/wedux",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A tiny Redux",
   "main": "dist/index.js",
   "private": false,

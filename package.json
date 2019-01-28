@@ -23,7 +23,7 @@
     "precommit": "zero precommit",
     "clean": "rm -rf dist lib build",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
-    "release": "npm run test && npm version",
+    "release": "np --no-yarn",
     "release:patch": "npm run release -- patch",
     "release:minor": "npm run release -- minor",
     "release:major": "npm run release -- major",

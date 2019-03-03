@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {mount} from 'enzyme'
+import { mount } from 'enzyme'
 import connectWithStore from '../connectWithStore'
 import Provider from '../Provider'
 import createStore from '../createStore'
@@ -13,7 +13,7 @@ test('Automatically retrieves store', () => {
       <ConnectedBob />
     </Provider>,
   )
-  const el = wrapper.find('Bob')
+  const el = wrapper.find(Bob)
 
   expect(el.prop('store')).toBe(store)
 })

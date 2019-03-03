@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {mount} from 'enzyme'
+import { mount } from 'enzyme'
 import createUniqueStore from '../createUniqueStore'
 
 test('Generates a store, connect, and Provider', () => {
@@ -37,12 +37,13 @@ test('Can generate a store with a custom namespace', () => {
 })
 
 test('Rendered components do not clash', () => {
-  const setOne = createUniqueStore({didMakeBurgers: false})
-  const setTwo = createUniqueStore({didMakeBurgers: false})
+  const setOne = createUniqueStore({ didMakeBurgers: false })
+  const setTwo = createUniqueStore({ didMakeBurgers: false })
 
-  const Bob = ({makeBurger}) => (
+  const Bob = ({ makeBurger }) => (
     <button onClick={makeBurger}>Make Burger</button>
   )
+  Bob.displayName = 'Bob'
 
   const makeBurger = store => {
     return {
@@ -50,10 +51,7 @@ test('Rendered components do not clash', () => {
     }
   }
 
-  const ConnectedBob = setTwo.connect(
-    null,
-    {makeBurger},
-  )(Bob)
+  const ConnectedBob = setTwo.connect(null, { makeBurger })(Bob)
 
   const wrapper = mount(
     <div>

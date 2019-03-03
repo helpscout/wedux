@@ -1,26 +1,26 @@
 import createStore from '../createStore'
-import {initialState} from '../__fixtures__/state'
+import { initialState } from '../__fixtures__/state'
 import actionTypes from '../__fixtures__/actionTypes'
 
 describe('Basics', () => {
   test('Creates basic store', () => {
-    const store = createStore({restaurantName: `Bob's Burgers`})
+    const store = createStore({ restaurantName: `Bob's Burgers` })
 
     expect(store.getState().restaurantName).toBe(`Bob's Burgers`)
   })
 
   test('Can set store state', () => {
-    const store = createStore({restaurantName: `Bob's Burgers`})
+    const store = createStore({ restaurantName: `Bob's Burgers` })
 
-    store.setState({restaurantName: 'Bob Burgers'})
+    store.setState({ restaurantName: 'Bob Burgers' })
 
     expect(store.getState().restaurantName).toBe(`Bob Burgers`)
   })
 
   test('Can add new values to the store', () => {
-    const store = createStore({restaurantName: `Bob's Burgers`})
+    const store = createStore({ restaurantName: `Bob's Burgers` })
 
-    store.setState({owner: 'Bob Belcher'})
+    store.setState({ owner: 'Bob Belcher' })
 
     expect(store.getState().restaurantName).toBe(`Bob's Burgers`)
     expect(store.getState().owner).toBe(`Bob Belcher`)
@@ -30,10 +30,10 @@ describe('Basics', () => {
 describe('Subscribe/Unsubscribe', () => {
   test('Can subscribe to store changes', () => {
     const spy = jest.fn()
-    const store = createStore({restaurantName: `Bob's Burgers`})
+    const store = createStore({ restaurantName: `Bob's Burgers` })
     store.subscribe(spy)
 
-    store.setState({owner: 'Bob Belcher'})
+    store.setState({ owner: 'Bob Belcher' })
 
     expect(spy).toHaveBeenCalledWith(
       {
@@ -43,27 +43,27 @@ describe('Subscribe/Unsubscribe', () => {
       undefined,
     )
 
-    store.setState({owner: 'Bob'})
+    store.setState({ owner: 'Bob' })
 
     expect(spy).toHaveBeenCalledTimes(2)
   })
 
   test('Can unsubscribe to store changes', () => {
     const spy = jest.fn()
-    const store = createStore({restaurantName: `Bob's Burgers`})
+    const store = createStore({ restaurantName: `Bob's Burgers` })
     store.subscribe(spy)
 
-    store.setState({owner: 'Bob Belcher'})
+    store.setState({ owner: 'Bob Belcher' })
 
     expect(spy).toHaveBeenCalledTimes(1)
 
     store.unsubscribe(spy)
 
-    store.setState({owner: 'Bob'})
-    store.setState({owner: 'Linda'})
-    store.setState({owner: 'Gene'})
-    store.setState({owner: 'Louise'})
-    store.setState({owner: 'Tina'})
+    store.setState({ owner: 'Bob' })
+    store.setState({ owner: 'Linda' })
+    store.setState({ owner: 'Gene' })
+    store.setState({ owner: 'Louise' })
+    store.setState({ owner: 'Tina' })
 
     expect(spy).toHaveBeenCalledTimes(1)
   })
@@ -93,7 +93,7 @@ describe('Reducer', () => {
 
     expect(store.getState().burgerCount).toBe(0)
 
-    store.dispatch({type: actionTypes.MAKE_BURGER})
+    store.dispatch({ type: actionTypes.MAKE_BURGER })
 
     expect(store.getState().burgerCount).toBe(1)
   })
@@ -101,7 +101,7 @@ describe('Reducer', () => {
   test('Can default state if no action.type is detected', () => {
     const store = createStore(reducer)
 
-    store.dispatch({type: undefined})
+    store.dispatch({ type: undefined })
 
     expect(store.getState().burgerCount).toBe(0)
   })
@@ -109,7 +109,7 @@ describe('Reducer', () => {
 
 describe('setState', () => {
   test('Returns default state if setState is called without arg', () => {
-    const initialState = {restaurantName: `Bob's Burgers`}
+    const initialState = { restaurantName: `Bob's Burgers` }
     const store = createStore(initialState)
 
     store.setState()
@@ -120,10 +120,10 @@ describe('setState', () => {
 
 describe('action', () => {
   test('Can setState with action', () => {
-    const initialState = {restaurantName: `Bob's Burgers`}
+    const initialState = { restaurantName: `Bob's Burgers` }
 
     const mockAction = state => {
-      return {...state, burgerCount: 50}
+      return { ...state, burgerCount: 50 }
     }
 
     const store = createStore(initialState)
@@ -136,12 +136,12 @@ describe('action', () => {
   })
 
   test('Can setState with async action', () => {
-    const initialState = {restaurantName: `Bob's Burgers`}
+    const initialState = { restaurantName: `Bob's Burgers` }
 
     const mockAsyncAction = state => {
       return {
         then: () => {
-          return {...state, burgerCount: 100}
+          return { ...state, burgerCount: 100 }
         },
       }
     }
@@ -156,7 +156,7 @@ describe('action', () => {
   })
 
   test('Does not modify state if action returns null', () => {
-    const initialState = {restaurantName: `Bob's Burgers`}
+    const initialState = { restaurantName: `Bob's Burgers` }
 
     const mockAction = () => null
 

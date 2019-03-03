@@ -1,5 +1,5 @@
 import createProvider from '../createProvider'
-import {defaultStoreKey} from '../utils'
+import { defaultStoreKey } from '../utils'
 
 test('Creates a Provider using the defaultStoreKey', () => {
   const Provider = createProvider()
@@ -8,7 +8,7 @@ test('Creates a Provider using the defaultStoreKey', () => {
 })
 
 test('Can create a Provider using a custom store key', () => {
-  const Provider = createProvider({storeKey: 'Bob'})
+  const Provider = createProvider({ storeKey: 'Bob' })
 
   expect(Provider.childContextTypes[defaultStoreKey]).toBeFalsy()
   expect(Provider.childContextTypes['Bob']).toBeTruthy()

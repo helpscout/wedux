@@ -1,5 +1,5 @@
 import createStore from './createStore'
-import {uuid} from './utils'
+import { uuid } from './utils'
 import createProvider from './createProvider'
 import connect from './connect'
 
@@ -17,13 +17,13 @@ function createUniqueStore(reducer?, enhancer?, namespace?: string) {
       mapStateToProps,
       actions,
       mergedProps,
-      {...options, store},
+      { ...options, store },
     )
   }
 
   return {
     store,
-    Provider: createProvider({storeKey}),
+    Provider: createProvider({ storeKey }),
     connect: uniqueConnect,
   }
 }

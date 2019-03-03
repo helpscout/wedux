@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 
 test('Can create a store with middleware', () => {
   const spy = jest.fn()
-  const mockMiddleware = ({getState}) => {
+  const mockMiddleware = ({ getState }) => {
     return next => action => {
       spy(getState(), action)
 
@@ -39,7 +39,7 @@ test('Can create async actions with redux-thunk', () => {
     return function(dispatch, getState) {
       spy(getState().owner)
 
-      dispatch({type: actionTypes.MAKE_BURGER})
+      dispatch({ type: actionTypes.MAKE_BURGER })
     }
   }
 

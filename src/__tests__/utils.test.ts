@@ -1,6 +1,6 @@
 // Source:
 // https://github.com/reduxjs/redux/blob/master/test/compose.spec.js
-import {compose} from '../utils'
+import { compose } from '../utils'
 
 describe('Utils', () => {
   describe('compose', () => {

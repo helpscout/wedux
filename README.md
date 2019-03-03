@@ -35,7 +35,7 @@ npm install --save @helpscout/wedux
 Out of the box, Wedux works just like [Unistore](https://github.com/developit/unistore):
 
 ```js
-import createStore, {Provider, connect} from '@helpscout/wedux'
+import createStore, { Provider, connect } from '@helpscout/wedux'
 ```
 
 ### createUniqueStore
@@ -53,12 +53,14 @@ This is a special feature that allows you to create stores (with associating `Pr
 **Example**
 
 ```jsx
-import {createUniqueStore} from '@helpscout/wedux'
+import { createUniqueStore } from '@helpscout/wedux'
 
 const libStore = createUniqueStore()
 const appStore = createUniqueStore()
 
-const Bob = ({makeBurger}) => <button onClick={makeBurger}>Make Burger</button>
+const Bob = ({ makeBurger }) => (
+  <button onClick={makeBurger}>Make Burger</button>
+)
 
 const makeBurger = store => {
   return {
@@ -66,10 +68,7 @@ const makeBurger = store => {
   }
 }
 
-const ConnectedBob = libStore.connect(
-  null,
-  {makeBurger},
-)(Bob)
+const ConnectedBob = libStore.connect(null, { makeBurger })(Bob)
 
 class App extends React.Component {
   render() {

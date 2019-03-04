@@ -6,8 +6,8 @@
   "private": false,
   "scripts": {
     "prestart": "zero prestart",
-    "build": "zero build && npm run build:postclean",
-    "build:postclean": "rm -rf dist/__tests__ && rm -rf dist/__fixtures__",
+    "build": "zero build --ts",
+    "postbuild": "rm -rf dist/__tests__ && rm -rf dist/__fixtures__",
     "bundle": "zero bundle",
     "lint": "zero lint",
     "dev": "zero test --watchAll",
@@ -16,14 +16,12 @@
     "test:update": "npm test -- --updateSnapshot --coverage",
     "validate": "zero validate",
     "precommit": "zero pre-commit",
-    "clean": "rm -rf dist lib build",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
-    "release": "npm run test && npm version",
+    "release": "zero release",
     "release:patch": "npm run release -- patch",
     "release:minor": "npm run release -- minor",
     "release:major": "npm run release -- major",
     "version": "npm run build",
-    "postversion": "npm publish && npm run git:push",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6007",
     "build-storybook": "build-storybook",
@@ -60,7 +58,7 @@
   },
   "devDependencies": {
     "@helpscout/helix": "0.1.0",
-    "@helpscout/zero": "3.0.0-1",
+    "@helpscout/zero": "3.0.0",
     "@types/enzyme": "3.9.0",
     "@types/jest": "23.3.10",
     "@types/react": "16.8.6",
@@ -72,7 +70,6 @@
     "react": "^16",
     "react-dom": "^16",
     "react-test-renderer": "^16",
-    "redux-thunk": "2.3.0",
-    "typescript": "^3.2.1"
+    "redux-thunk": "2.3.0"
   }
 }

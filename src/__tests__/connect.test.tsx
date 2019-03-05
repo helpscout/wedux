@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {mount} from 'enzyme'
+import { mount } from 'enzyme'
 import connect from '../connect'
 import createStore from '../createStore'
 
@@ -35,7 +35,7 @@ test('Connect can create a React.Component instance, if defined', () => {
     null,
     null,
     {},
-    {pure: false},
+    { pure: false },
   )(Bob)
   const wrapper = mount(<ConnectedBob />)
 
@@ -44,13 +44,14 @@ test('Connect can create a React.Component instance, if defined', () => {
 
 test('Can pass mergedProps into connected component', () => {
   const Bob = () => <div />
+  Bob.displayName = 'Bob'
   const ConnectedBob = connect(
     null,
     null,
     {
       hasKids: true,
     },
-    {pure: false},
+    { pure: false },
   )(Bob)
   const wrapper = mount(<ConnectedBob />)
   const el = wrapper.find('Bob')
@@ -60,6 +61,8 @@ test('Can pass mergedProps into connected component', () => {
 
 test('Can retrieve store from connect', () => {
   const Bob = () => <div />
+  Bob.displayName = Bob
+
   const store = createStore({})
   const ConnectedBob = connect(
     null,
@@ -69,10 +72,10 @@ test('Can retrieve store from connect', () => {
       store,
       withStore: true,
     },
-    {pure: false},
+    { pure: false },
   )(Bob)
   const wrapper = mount(<ConnectedBob />)
-  const el = wrapper.find('Bob')
+  const el = wrapper.find(Bob)
 
   expect(el.prop('hasKids')).toBe(true)
   expect(el.prop('store')).toBe(store)
@@ -85,7 +88,7 @@ test('Subscribes to store on mount', () => {
   const store = createStore({})
   store.subscribe = spy
 
-  mount(<ConnectedBob />, {context: {__WEDUX_STORE__: store}})
+  mount(<ConnectedBob />, { context: { __WEDUX_STORE__: store } })
 
   expect(spy).toHaveBeenCalled()
 })
@@ -97,7 +100,9 @@ test('Unsubscribes to store on unmount', () => {
   const store = createStore({})
   store.unsubscribe = spy
 
-  const wrapper = mount(<ConnectedBob />, {context: {__WEDUX_STORE__: store}})
+  const wrapper = mount(<ConnectedBob />, {
+    context: { __WEDUX_STORE__: store },
+  })
   wrapper.unmount()
 
   expect(spy).toHaveBeenCalled()

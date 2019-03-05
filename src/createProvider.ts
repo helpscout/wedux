@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {defaultStoreKey} from './utils'
+import { defaultStoreKey } from './utils'
 
 type ProviderOptions = {
   storeKey?: string
@@ -14,14 +14,14 @@ const defaultOptions = {
 export default function createProvider(
   options: ProviderOptions = defaultOptions,
 ) {
-  const {storeKey, store} = {...defaultOptions, ...options}
+  const { storeKey, store } = { ...defaultOptions, ...options }
 
   return class Provider extends React.Component<any> {
     static childContextTypes = {
       [storeKey]: () => {},
     }
     getChildContext() {
-      return {[storeKey]: this.props.store || store}
+      return { [storeKey]: this.props.store || store }
     }
     render() {
       return React.Children.only(this.props.children)

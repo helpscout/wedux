@@ -1,7 +1,7 @@
 import combineReducers from '../combineReducers'
 
 test('Can combine reducers', () => {
-  const bobReducer = (state = {burgers: 0}, action) => {
+  const bobReducer = (state = { burgers: 0 }, action) => {
     switch (action.type) {
       case 'MAKE_BURGER':
         return {
@@ -13,7 +13,7 @@ test('Can combine reducers', () => {
     }
   }
 
-  const teddyReducer = (state = {isRoofFixed: false}, action) => {
+  const teddyReducer = (state = { isRoofFixed: false }, action) => {
     switch (action.type) {
       case 'FIX_ROOF':
         return {
@@ -38,7 +38,7 @@ test('Can combine reducers', () => {
 })
 
 test('Can update combined reducer state with an action', () => {
-  const bobReducer = (state = {burgers: 0}, action) => {
+  const bobReducer = (state = { burgers: 0 }, action) => {
     switch (action.type) {
       case 'MAKE_BURGER':
         return {
@@ -50,7 +50,7 @@ test('Can update combined reducer state with an action', () => {
     }
   }
 
-  const teddyReducer = (state = {isRoofFixed: false}, action) => {
+  const teddyReducer = (state = { isRoofFixed: false }, action) => {
     switch (action.type) {
       case 'FIX_ROOF':
         return {
@@ -71,17 +71,17 @@ test('Can update combined reducer state with an action', () => {
 
   let nextState
 
-  nextState = reducers(initialState, {type: 'MAKE_BURGER'}) as any
+  nextState = reducers(initialState, { type: 'MAKE_BURGER' }) as any
 
   expect(nextState.bob.burgers).toBe(1)
   expect(nextState.teddy.isRoofFixed).toBe(false)
 
-  nextState = reducers(nextState, {type: 'MAKE_BURGER'}) as any
+  nextState = reducers(nextState, { type: 'MAKE_BURGER' }) as any
 
   expect(nextState.bob.burgers).toBe(2)
   expect(nextState.teddy.isRoofFixed).toBe(false)
 
-  nextState = reducers(nextState, {type: 'FIX_ROOF'}) as any
+  nextState = reducers(nextState, { type: 'FIX_ROOF' }) as any
 
   expect(nextState.teddy.isRoofFixed).toBe(true)
 })

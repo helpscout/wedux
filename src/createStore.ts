@@ -1,5 +1,5 @@
 import createUnistore from './createUnistore'
-import {isFn} from './utils'
+import { isFn } from './utils'
 
 export default function createStore(reducer?, enhancer?) {
   if (enhancer) {

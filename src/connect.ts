@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {mapActions, select, defaultStoreKey, isFn} from './utils'
+import { mapActions, select, defaultStoreKey, isFn } from './utils'
 
 export type Options = {
   pure: boolean
@@ -19,7 +19,7 @@ export function createConnect(
   mergedProps: Object = {},
   options: any = defaultOptions,
 ): any {
-  const {pure, withStore, store: providedStore, storeKey} = {
+  const { pure, withStore, store: providedStore, storeKey } = {
     ...defaultOptions,
     ...options,
   } as Options
@@ -38,7 +38,7 @@ export function createConnect(
       OuterBaseComponent.call(this, props, context)
 
       const store = providedStore || context[internalStoreKey]
-      const boundActions = actions ? mapActions(actions, store) : {store}
+      const boundActions = actions ? mapActions(actions, store) : { store }
 
       let state = mapStateToProps(store ? store.getState() : {}, props)
 
@@ -67,17 +67,17 @@ export function createConnect(
       }
       this.render = () => {
         const connectedMergedProps = {
-          ...{...boundActions},
+          ...{ ...boundActions },
           ...this.props,
           ...state,
           ...mergedProps,
         }
-        const {store, ...propsWithoutStore} = connectedMergedProps
+        const { store, ...propsWithoutStore } = connectedMergedProps
         const preparedProps = withStore
           ? connectedMergedProps
           : propsWithoutStore
 
-        return React.createElement(Child, {...preparedProps, ...mergedProps})
+        return React.createElement(Child, { ...preparedProps, ...mergedProps })
       }
     }
 

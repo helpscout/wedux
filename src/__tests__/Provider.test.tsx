@@ -6,26 +6,28 @@ import mockReducer from '../__fixtures__/reducer'
 import thunk from 'redux-thunk'
 import Provider from '../Provider'
 import connect from '../connect'
-import {mount} from 'enzyme'
+import { mount } from 'enzyme'
 
 test('Can pass data from Provider to connected component', () => {
   const spy = jest.fn()
 
-  const Bob = ({burgers, makeBurger}) => (
+  const Bob = ({ burgers, makeBurger }) => (
     <div>
       <div className="count">{burgers}</div>
       <button onClick={makeBurger}>Make Burgers</button>
     </div>
   )
+  Bob.displayName = 'Bob'
+
   const makeBurger = () => {
     return function(dispatch, getState) {
       spy(getState().owner)
 
-      dispatch({type: actionTypes.MAKE_BURGER})
+      dispatch({ type: actionTypes.MAKE_BURGER })
     }
   }
-  const mapStateToProps = state => ({burgers: state.burgerCount})
-  const mapDispatchToProps = {makeBurger}
+  const mapStateToProps = state => ({ burgers: state.burgerCount })
+  const mapDispatchToProps = { makeBurger }
   const ConnectedBob = connect(
     mapStateToProps,
     mapDispatchToProps,

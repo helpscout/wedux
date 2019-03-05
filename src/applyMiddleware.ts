@@ -1,4 +1,4 @@
-import {compose} from './utils'
+import { compose } from './utils'
 
 export default function applyMiddleware(...middlewares) {
   return createStore => (...args) => {

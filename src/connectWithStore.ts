@@ -10,6 +10,6 @@ export default function connectWithStore(
     mapStateToProps,
     actions,
     mergedProps,
-    {...options, withStore: true},
+    { ...options, withStore: true },
   )
 }

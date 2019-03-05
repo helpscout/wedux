@@ -1,4 +1,4 @@
-import {isFn} from './utils'
+import { isFn } from './utils'
 
 export default function combineReducers(reducers) {
   return (state = {}, action = {}) => {

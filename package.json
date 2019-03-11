@@ -67,9 +67,9 @@
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.10.0",
     "nyc": "13.3.0",
-    "react": "^16",
-    "react-dom": "^16",
-    "react-test-renderer": "^16",
+    "react": "16.8.4",
+    "react-dom": "16.8.4",
+    "react-test-renderer": "16.8.4",
     "redux-thunk": "2.3.0"
   }
 }
